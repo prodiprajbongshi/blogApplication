@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* add outfit font  */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+   font-family: "Outfit", sans-serif;
+}
+
+
+@utility container {
+  margin-inline: auto;
+
+  /* max-width : 1920px; */
+}
+
+@theme {
+  --color-primary: #5044E5;
+ 
+}
+
+
+ 
