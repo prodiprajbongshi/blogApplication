@@ -27,7 +27,7 @@ const Hero = () => {
             <input
               placeholder="Search for blogs"
               type="text"
-              class="w-full pl-4 outline-none"
+              className="w-full pl-4 outline-none"
               name=""
               id=""
               required

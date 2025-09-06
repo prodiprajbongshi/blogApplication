@@ -13,7 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:_id" element={<Blog />} />
+        <Route path="/blog/:id" element={<Blog />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
