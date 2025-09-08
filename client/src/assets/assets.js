@@ -9,7 +9,7 @@ import blog_pic_8 from './blog_pic_8.png';
 import blog_pic_9 from './blog_pic_9.png';
 import blog_pic_10 from './blog_pic_10.png';
 import arrow from './arrow.svg'
-import logo_light from './logo_light.svg'
+import logo from './brandIcon.png'
 import blog_icon from './blog_icon.png'
 import add_icon from './add_icon.svg'
 import list_icon from './list_icon.svg'
@@ -32,7 +32,7 @@ import dashboard_icon_4 from './dashboard_icon_4.svg'
 export const assets = {
  
     arrow,
-    logo_light,
+    logo,
     blog_icon,
     add_icon,
     email_icon,

@@ -1,22 +1,46 @@
 import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./page/Home";
-import { Route, Routes } from "react-router-dom";
 import Blog from "./page/Blog";
 import Error404 from "./page/Error404";
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
+import Layout from "./page/admin/Layout";
+import Dashbord from "./page/admin/Dashbord";
+import Comments from "./page/admin/Comments";
+import AddBlog from "./page/admin/AddBlog";
+import AllBlog from "./page/admin/AllBlog";
+import Login from "./component/admin/Login";
+ 
 
 const App = () => {
+  const location = useLocation();
+
+ 
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
     <div>
-      <Navbar />
+
+      {!isAdminRoute && <Navbar />}
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<Blog />} />
+        
+        {/* Admin routes */}
+        <Route path="/admin" element={ true ? <Layout /> : <Login />}>
+          <Route index element={<Dashbord />} />
+          <Route path="addblog" element={<AddBlog />} />
+          <Route path="allBlog" element={<AllBlog />} />
+          <Route path="comments" element={<Comments />} />
+        </Route>
+
         <Route path="*" element={<Error404 />} />
       </Routes>
-      <Footer />
+      
+      {!isAdminRoute && <Footer />}
     </div>
   );
 };

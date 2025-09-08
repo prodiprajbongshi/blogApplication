@@ -35,7 +35,7 @@ const Hero = () => {
 
             <button
               type="submit"
-              class="bg-primary text-white px-8 py-2 m-1.5 rounded hover:scale-105 transition-all cursor-pointer"
+              className="bg-primary text-white px-8 py-2 m-1.5 rounded hover:scale-105 transition-all cursor-pointer"
             >
               Search
             </button>
