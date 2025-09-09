@@ -11,7 +11,7 @@ import Comments from "./page/admin/Comments";
 import AddBlog from "./page/admin/AddBlog";
 import AllBlog from "./page/admin/AllBlog";
 import Login from "./component/admin/Login";
- 
+import  "quill/dist/quill.snow.css"
 
 const App = () => {
   const location = useLocation();

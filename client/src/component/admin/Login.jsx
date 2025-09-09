@@ -22,6 +22,7 @@ const Login = () => {
               name=""
               placeholder="Enter Email"
               id=""
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -32,6 +33,7 @@ const Login = () => {
               name=""
               placeholder="Enter Password"
               id=""
+              required
             />
           </div>
           <button
