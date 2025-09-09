@@ -1,6 +1,6 @@
 import React from "react";
 import { assets } from "../../assets/assets";
-import {  Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../../component/admin/Sidebar";
 
 const Layout = () => {
@@ -25,10 +25,10 @@ const Layout = () => {
           Logout
         </button>
       </div>
-      <div className="flex h-screen ">
-        <div className="flex ">
+      <div className="flex h-screen w-full">
+        <div className="flex w-full">
           <Sidebar />
-          <Outlet/>
+          <Outlet className="flex-1" />
         </div>
       </div>
     </div>

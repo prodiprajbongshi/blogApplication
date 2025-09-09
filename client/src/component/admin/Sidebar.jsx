@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { LuPanelTopClose } from "react-icons/lu";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { MdArticle } from "react-icons/md";
+
+import { FaComments } from "react-icons/fa";
  
 
 const Sidebar = () => {
@@ -16,11 +19,11 @@ const Sidebar = () => {
         <h1 className="hidden md:inline-block">Add Blog</h1>
       </NavLink>
       <NavLink  to='/admin/allBlog' className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`}> 
-          <IoAddCircleOutline size={24} />
+          <MdArticle size={24} />
         <h1 className="hidden md:inline-block">Blog lists</h1>
       </NavLink>
       <NavLink  to='/admin/comments' className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-64 cursor-pointer ${isActive && "bg-primary/10 border-r-4 border-primary"}`}> 
-          <IoAddCircleOutline size={24} />
+          <FaComments size={24} />
         <h1 className="hidden md:inline-block">Comments</h1>
       </NavLink>
     </div>

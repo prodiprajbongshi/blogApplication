@@ -20,7 +20,7 @@ const Dashbord = () => {
 
   // console.log(blog_data);
   return (
-    <div className="flex-1 p-4 md:p-10 bg-blue-50/50">
+    <div className="flex-1  p-4 md:p-10  bg-blue-50/70">
       <div className="flex flex-wrap gap-4">
         {/* blogs  */}
         <div
