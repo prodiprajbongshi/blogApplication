@@ -1,13 +1,9 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
-
 const connectDB = async () => {
   try {
     await mongoose.connect(`${process.env.MONGODB_URI}/techScript`);
     console.log(" Database Connected");
-    
+    // console.log(process.env.MONGODB_URI);
   } catch (error) {
     console.error("Database connection error:", error.message);
     process.exit(1);

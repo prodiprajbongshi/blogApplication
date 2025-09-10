@@ -1,3 +1,6 @@
+ import jwt from 'jsonwebtoken'
+
+// admin login 
 export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -13,3 +16,5 @@ export const adminLogin = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+ 
