@@ -3,9 +3,12 @@ import cors from "cors";
 import connectDB from "./config/mongoDB.js";
 import dotenv from "dotenv";
 import adminRouter from "./routes/adminRoute.js"
+import blogRouter from "./routes/blogRouter.js";
 
 dotenv.config();
 const app = express();
+
+  
 
 // middelwares
 app.use(cors());
@@ -22,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/admin", adminRouter)
+app.use("/api/blog", blogRouter)
 
 
 app.listen(PORT, () => {
