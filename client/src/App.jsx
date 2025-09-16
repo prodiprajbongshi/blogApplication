@@ -12,16 +12,20 @@ import AddBlog from "./page/admin/AddBlog";
 import AllBlog from "./page/admin/AllBlog";
 import Login from "./component/admin/Login";
 import  "quill/dist/quill.snow.css"
+import {Toaster} from 'react-hot-toast'
+import { useAppContext } from "./context/AppContext.jsx";
 
 const App = () => {
   const location = useLocation();
-
- 
   const isAdminRoute = location.pathname.startsWith("/admin");
+
+  const {token} = useAppContext()
+  // console.log(token)
+ 
 
   return (
     <div>
-
+      <Toaster />
       {!isAdminRoute && <Navbar />}
       
       <Routes>
@@ -30,7 +34,7 @@ const App = () => {
         <Route path="/blog/:id" element={<Blog />} />
         
         {/* Admin routes */}
-        <Route path="/admin" element={ true ? <Layout /> : <Login />}>
+        <Route path="/admin" element={ token ? <Layout /> : <Login />}>
           <Route index element={<Dashbord />} />
           <Route path="addblog" element={<AddBlog />} />
           <Route path="allBlog" element={<AllBlog />} />
