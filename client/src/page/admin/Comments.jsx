@@ -44,7 +44,7 @@ rounded-lg scrollbar-hide pt-6"
       >
         <table className="w-full text-sm text-gray-500 ">
           <thead className="text-xs text-gray-700 text-left uppercase">
-            <tr className="bg-gray-300">
+            <tr className=" ">
               <th scope="col" className="px-6 py-3">
                 Blog Title & Comment
               </th>
