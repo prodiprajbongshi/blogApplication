@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import heroBg from "../assets/gradientBackground.png";
 import start from "../assets/star_icon.svg";
+import { useAppContext } from "../context/AppContext";
 
 const Hero = () => {
+  const { setInput, input } = useAppContext();
+  const inputRef = useRef();
+
+  // handle blog search
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setInput(inputRef.current.value);
+    inputRef.current.value = "";
+  };
+
+  // clear search filter
+  const onClear = () => {
+    setInput("");
+     
+  };
+
   return (
     <div className="container">
       <div className="relative">
@@ -23,8 +40,12 @@ const Hero = () => {
             write without filters. Whether it's one word or a thousand, your
             story starts right here.
           </p>
-          <form className="flex justify-between max-w-lg max-sm:scale-75 mx-auto border border-gray-300 bg-white rounded overflow-hidden">
+          <form
+            onSubmit={handleOnSubmit}
+            className="flex justify-between max-w-lg max-sm:scale-75 mx-auto border border-gray-300 bg-white rounded overflow-hidden"
+          >
             <input
+              ref={inputRef}
               placeholder="Search for blogs"
               type="text"
               className="w-full pl-4 outline-none"
@@ -40,6 +61,17 @@ const Hero = () => {
               Search
             </button>
           </form>
+        </div>
+        <div className="text-center">
+          {input && (
+            <button
+              onClick={onClear}
+              className="border font-light text-xs py-2 px-3 mt-6 rounded-sm
+              shadow-custom-sm cursor-pointer hover:bg-primary hover:text-white transition-all duration-300"
+            >
+              Clear Search
+            </button>
+          )}
         </div>
 
         {/* bg image  */}

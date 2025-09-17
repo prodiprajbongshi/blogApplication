@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div className="container">
-      <nav className="flex items-center justify-between py-5 ">
+      <nav className="flex items-center justify-between py-5  ">
         <Link to="/">
           <img className="w-40" src={brandIcon} alt="Brand Icon" />
         </Link>

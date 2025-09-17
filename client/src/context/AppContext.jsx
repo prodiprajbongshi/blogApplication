@@ -14,10 +14,12 @@ export const AppContextProvider = ({ children }) => {
   const [blogs, setBlogs] = useState([]);
   const [input, setInput] = useState("");
 
+ 
+
   const fetchBlogs = async () => {
     try {
       const { data } = await axios.get("/api/blog/allblogs");
-      data.success ? setBlogs(data.blogs) : toast.error(data.message);
+      data.success ? setBlogs(data.blog) : toast.error(data.message);
     } catch (error) {
       toast.error(error.message);
     }
