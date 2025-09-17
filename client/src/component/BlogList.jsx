@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { blog_data, blogCategories } from "../assets/assets.js";
+import {blog_data,  blogCategories } from "../assets/assets.js";
 import BlogCard from "./BlogCard.jsx";
+ 
 
 const BlogList = () => {
   const [Menu, setMenu] = useState("All");
+
+ 
 
   return (
     <div className="container my-8">
@@ -34,11 +37,10 @@ const BlogList = () => {
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 I
 gap-8 mb-24 mx-8 sm:mx-16 xl:mx-40"
       >
-        {blog_data
-          .filter((blog) => (Menu === "All" ? true : blog.category === Menu))
+        {
+          blog_data.filter((blog) => (Menu === "All" ? true : blog.category === Menu))
           .map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
-             
           ))}
       </div>
     </div>
@@ -46,3 +48,6 @@ gap-8 mb-24 mx-8 sm:mx-16 xl:mx-40"
 };
 
 export default BlogList;
+
+
+ 

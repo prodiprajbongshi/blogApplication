@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 
@@ -9,20 +8,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   // handle admin login form 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post('/api/admin/login', {email, password});
-      if(data.success){
+      const { data } = await axios.post("/api/admin/login", { email, password });
+      console.log(email, password)
+      if (data.success) {
         setToken(data.token);
-        localStorage.setItem('token', data.token);
-        axios.defaults.headers.common['Authorization'] = data.token;
-      }else{
+        localStorage.setItem("token", data.token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+        toast.success("Login successful");
+      } else {
         toast.error(data.message);
       }
-
     } catch (error) {
       toast.error(error.message);
     }
@@ -39,35 +38,43 @@ const Login = () => {
             Enter your credentials to access the admin panel
           </p>
         </div>
-        {/* loging from  */}
-        <form onSubmit={handleSubmit} className="mt-6 w-full sm:max-w-md text-gray-600">
+
+        {/* login form */}
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 w-full sm:max-w-md text-gray-600"
+        >
           <div className="flex flex-col">
-            <label>Eamil</label>
+            <label htmlFor="email">Email</label>
             <input
               className="border-b-2 border-gray-300 p-2 outline-none mb-6"
               type="email"
-              name=""
+              id="email"
               placeholder="Enter Email"
-              id=""
+              value={email}                 // ✅ bind value
+              onChange={(e) => setEmail(e.target.value)} // ✅ update state
               required
             />
           </div>
+
           <div className="flex flex-col">
             <label htmlFor="password">Password</label>
             <input
               className="border-b-2 border-gray-300 p-2 outline-none mb-6"
               type="password"
-              name=""
+              id="password"
               placeholder="Enter Password"
-              id=""
+              value={password}                // ✅ bind value
+              onChange={(e) => setPassword(e.target.value)} // ✅ update state
               required
             />
           </div>
+
           <button
             type="submit"
-            class="w-full py-3 font-medium bg-primary text-white rounded cursor-pointer hover:bg-primary/90 transition-all"
+            className="w-full py-3 font-medium bg-primary text-white rounded cursor-pointer hover:bg-primary/90 transition-all"
           >
-            Login{" "}
+            Login
           </button>
         </form>
       </div>

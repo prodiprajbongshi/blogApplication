@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="">
           <button onClick={()=> navigation("/admin")} className="flex items-center gap-2 bg-primary rounded-[33px] py-2.5 px-4 text-white cursor-pointer text-sm font-medium hover:bg-primary/90 transition-all duration-300">
             {token ? "Dashbord" : "Admin Login"    }
-            {console.log(token)}
+            {/* {console.log(token)} */}
             <FaArrowRightLong />
           </button>
         </div>

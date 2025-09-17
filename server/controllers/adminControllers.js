@@ -1,20 +1,40 @@
 import jwt from "jsonwebtoken";
 import Blog from "../models/Blog.js";
 
-// admin login
+
+import dotenv from "dotenv";
+dotenv.config();
+
+// Admin login controller
 export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      return res.json({ success: false, message: "Email and password are required" });
+    }
+
+    // Check credentials
     if (
       email !== process.env.ADMIN_EMAIL ||
       password !== process.env.ADMIN_PASSWORD
     ) {
-      return res.json({ success: false, message: "Invalid Credentials" });
+      return res.status(401).json({ success: false, message: "Invalid Credentials" });
     }
-    const token = jwt.sign({ email }, process.env.JWT_SECRET);
-    res.json({ success: true, token });
+
+    // Generate token 
+    const token = jwt.sign(
+      { email },
+      process.env.JWT_SECRET,
+      { expiresIn: 60 } 
+    );
+
+    // Return token
+    return res.status(200).json({ success: true, token });
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    console.error("Admin Login Error:", error);
+    return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
