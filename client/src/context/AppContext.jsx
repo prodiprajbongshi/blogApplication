@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 const AppContext = createContext();
 
@@ -20,6 +20,7 @@ export const AppContextProvider = ({ children }) => {
     try {
       const { data } = await axios.get("/api/blog/allblogs");
       data.success ? setBlogs(data.blog) : toast.error(data.message);
+      // console.log(data)
     } catch (error) {
       toast.error(error.message);
     }
@@ -30,7 +31,6 @@ export const AppContextProvider = ({ children }) => {
 
     const token = localStorage.getItem("token");
 // console.log(token)
-
     if (token) {
       setToken(token);
       axios.defaults.headers.common["Authorization"] = `${token}`;

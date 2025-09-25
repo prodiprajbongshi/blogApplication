@@ -1,13 +1,13 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { assets, blogCategories } from "../../assets/assets";
 import Quill from "quill";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
- 
 
 const AddBlog = () => {
   const { axios } = useAppContext();
-  const [isAdding, setisAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
   const editorRef = useRef(null);
   const quillRef = useRef(null);
@@ -21,9 +21,10 @@ const AddBlog = () => {
   const generateContent = async () => {};
 
   const onSubmitHandeler = async (e) => {
+    e.preventDefault();
+    setIsAdding(true);
+
     try {
-      e.preventDefault();
-      setisAdding(true);
       const blog = {
         title,
         subTitle,
@@ -31,23 +32,38 @@ const AddBlog = () => {
         category,
         isPublished,
       };
+
       const formData = new FormData();
       formData.append("blog", JSON.stringify(blog));
       formData.append("image", image);
-      const { data } = await axios.post("/api/blog/add", formData);
+
+      // get token from localStorage
+      const token = localStorage.getItem("token");
+
+      // send request with Authorization header
+      const { data } = await axios.post("/api/blog/add", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,  
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (data.success) {
         toast.success(data.message);
-        setImage(false);
+        // reset form
+        setImage(null);
         setTitle("");
-        quillRef.current.root.innerHTML = setCategory("Startup");
+        setSubTitle("");
+        setCategory("Startup");
+        quillRef.current.root.innerHTML = "";
+        setIsPublished(false);
       } else {
-        toast.error("test");
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message)
-    }finally{
-      setisAdding(false)
+      toast.error(error.response?.data?.message || error.message);
+    } finally {
+      setIsAdding(false);
     }
   };
 
@@ -102,7 +118,7 @@ const AddBlog = () => {
           value={subTitle}
         />
 
-        {/* blog discription  */}
+        {/* Blog Description */}
         <p className="mt-4">Blog Description</p>
         <div className="max-w-lg h-72 pb-16 sm:pb-10 pt-2 relative">
           <div className="" ref={editorRef}></div>
@@ -117,10 +133,10 @@ const AddBlog = () => {
 
         <p className="mt-4">Blog category</p>
         <select
+          value={category}
           onChange={(e) => setCategory(e.target.value)}
           name="category"
-          className="mt-2 px-3 py-2 border text-gray-500 border-gray-300 outline-none
-          rounded"
+          className="mt-2 px-3 py-2 border text-gray-500 border-gray-300 outline-none rounded"
         >
           <option value="">Select category</option>
           {blogCategories.map((item, index) => {
@@ -137,16 +153,14 @@ const AddBlog = () => {
           <input
             type="checkbox"
             checked={isPublished}
-            className="scale-125
-            cursor-pointer"
+            className="scale-125 cursor-pointer"
             onChange={(e) => setIsPublished(e.target.checked)}
           />
         </div>
 
         <button
           type="submit"
-          className="mt-8 w-40 h-10 bg-primary text-white
-rounded cursor-pointer text-sml"
+          className="mt-8 w-40 h-10 bg-primary text-white rounded cursor-pointer text-sml"
         >
           {isAdding ? "Adding..." : "Add Blog"}
         </button>
@@ -156,3 +170,4 @@ rounded cursor-pointer text-sml"
 };
 
 export default AddBlog;
+

@@ -3,6 +3,7 @@ import Blog from "../models/Blog.js";
 
 
 import dotenv from "dotenv";
+import Comment from "../models/comment.js";
 dotenv.config();
 
 // Admin login controller
@@ -10,10 +11,6 @@ export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate input
-    if (!email || !password) {
-      return res.json({ success: false, message: "Email and password are required" });
-    }
 
     // Check credentials
     if (
@@ -23,20 +20,24 @@ export const adminLogin = async (req, res) => {
       return res.json({ success: false, message: "Invalid Credentials" });
     }
 
+
+ 
+
     // Generate token 
     const token = jwt.sign(
       { email },
       process.env.JWT_SECRET,
-      { expiresIn: 60 } 
+    
     );
-
+ 
     // Return token
-    return res.status(200).json({ success: true, token });
+    return res.json({ success: true, token });
   } catch (error) {
-    console.error("Admin Login Error:", error);
-    return res.status(500).json({ success: false, message: "Server Error" });
+   
+    return res.json({ success: false, message: error.message});
   }
 };
+
 
 // get all blog
 export const getAllBlogsAdmin = async (req, res) => {
@@ -89,7 +90,6 @@ export const deleteCommentById = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-
 
 
 // approveCommentById
