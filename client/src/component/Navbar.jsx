@@ -7,12 +7,12 @@ import { useAppContext } from "../context/AppContext";
 const Navbar = () => {
 
     const navigation = useNavigate()
-    const {navigate, token} = useAppContext() 
+    const {   token} = useAppContext() 
   
 
   return (
     <div className="container">
-      <nav className="flex items-center justify-between py-5  ">
+      <nav className="flex items-center justify-between py-5 xl:mx-0 md:mx-8 mx-2  ">
         <Link to="/">
           <img className="w-40" src={brandIcon} alt="Brand Icon" />
         </Link>

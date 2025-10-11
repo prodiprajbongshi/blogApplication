@@ -24,7 +24,7 @@ const Hero = () => {
     <div className="container">
       <div className="relative">
         {/* hero content  */}
-        <div className="text-center md:mt-18">
+        <div className="text-center md:mt-18 mt-8">
           <div className="inline-flex items-center justify-center gap-4 px-6 py-1.5 mb-4 border border-primary/40 bg-primary/10 rounded-full text-sm text-primary">
             <p className="text-sm font-light text-primary">
               New: AI feature integrated

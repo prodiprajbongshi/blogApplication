@@ -32,7 +32,7 @@ const Layout = () => {
           Logout
         </button>
       </div>
-      <div className="flex h-screen w-full">
+      <div className="flex min-h-screen w-full">
         <div className="flex w-full">
           <Sidebar />
           <Outlet className="flex-1" />

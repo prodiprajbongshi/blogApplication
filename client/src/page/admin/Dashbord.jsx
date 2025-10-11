@@ -31,7 +31,7 @@ const Dashbord = () => {
 
   // console.log(blog_data);
   return (
-    <div className="flex-1  p-4 md:p-10  bg-blue-50/70">
+    <div className="flex-1 overflow-hidden p-4 md:p-10  bg-blue-50/70">
       <div className="flex flex-wrap gap-4">
         {/* blogs  */}
         <div
@@ -74,16 +74,16 @@ const Dashbord = () => {
         </div>
       </div>
       {/* recent blogs  */}
-      <div className="">
+      <div className="  pb-10 ">
         <div className="flex items-center gap-3 m-4 mt-6 text-gray-600">
           <img src={assets.dashboard_icon_4} alt="" />
           <p>Latest Blogs</p>
         </div>
         <div
-          className="relative max-w-4xl overflow-x-auto shadow rounded-lg 
-            scrollbar-hide bg-white"
+          className="relative min-w-[225px] sm:w-full  overflow-x-scroll  shadow rounded-lg 
+            scrollbar-hide bg-white  "
         >
-          <table className="w-full text-sm text-gray-500">
+          <table className=" text-sm min-w-[600px] text-gray-500 ">
             <thead className="text-xs text-gray-600 text-left uppercase">
               <tr>
                 <th scope="col" className=" py-4  px-6">
@@ -103,7 +103,7 @@ const Dashbord = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className=" ">
               {dashbordeData.recentBlogs.map((blog, index) => {
                 return (
                   <BlogTableItem

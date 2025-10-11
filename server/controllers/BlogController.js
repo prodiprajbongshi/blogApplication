@@ -2,6 +2,7 @@ import fs from "fs";
 import imagekit from "../config/imageKit.js";
 import Blog from "../models/Blog.js";
 import Comment from "../models/comment.js";
+import main from "../config/Gemini.js";
 
 // create new blog
 export const addBlog = async (req, res) => {
@@ -170,3 +171,28 @@ export const getBlogComments = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
+
+// Genarate content using AI 
+
+export const ganerateContent = async (req, res) => {
+  try {
+    const { prompt } = req.body;
+
+    if (!prompt) {
+      return res.json({ success: false, message: "Prompt is required" });
+    }
+
+    const content = await main(
+      prompt + " — Generate a blog content for this topic in simple text format, Mind it don't add here is type text in the top "
+    );
+
+    res.json({ success: true, content });
+    // main()
+  } catch (error) {
+    
+    res.json({ success: false, message: error.message });
+  }
+};
+

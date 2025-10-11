@@ -61,7 +61,7 @@ const Blog = () => {
   }, []);
 
   return data ? (
-    <div className="container py-12 relative">
+    <div className="container py-8 md:py-12  relative">
       <div className="text-center">
         <p className="text-primary py-4 font-medium">
           Published on {moment(data.createdAt).format("MMM Do YYYY")}
@@ -69,7 +69,7 @@ const Blog = () => {
         <h1 className="text-2xl sm:text-5xl font-semibold max-w-2xl mx-auto text-gray-800">
           {data.title}
         </h1>
-        <h2 className="my-5 max-w-lg truncate mx-auto">{data.subTitle}</h2>
+        <h2 className=" my-2 md:my-5 max-w-lg truncate mx-auto">{data.subTitle}</h2>
         <p className="inline-block py-1 px-4 rounded-full mb-6 border text-sm border-primary/35 bg-primary/5 font-medium text-primary">
           Admin
         </p>
@@ -87,12 +87,14 @@ const Blog = () => {
         />
       </div>
       {/* blog details  */}
-      <div
+  
+      <div 
         dangerouslySetInnerHTML={{ __html: data.description }}
-        className="rich-text rich-text max-w-3xl mx-auto"
+        className="rich-text rich-text max-w-3xl mx-auto px-5"
       ></div>
+ 
       {/* comments data  */}
-      <div className="mt-14 mb-10 max-w-3xl mx-auto">
+      <div className="mt-8 md:mt-12 mb-10 max-w-3xl mx-auto px-5">
         <p className="font-semibold mb-4">Comments ({comments.length})</p>
         <div className="flex flex-col gap-4">
           {comments.map((item, index) => (
@@ -115,7 +117,7 @@ border-primary/5 max-w-xl p-4 rounded text-gray-600"
       </div>
 
       {/* comment form  */}
-      <div className="max-w-3xl mx-auto mb-12">
+      <div className="max-w-3xl mx-auto mb-12 px-5">
         <p className="font-semibold mb-4">Add your comment</p>
         <form
           onSubmit={addComment}

@@ -29,7 +29,7 @@ const BlogList = () => {
   return (
     <div className="container my-8">
       {/* Blog categories */}
-      <div className="flex items-center justify-center gap-4 relative mb-8">
+      <div className="flex flex-wrap items-center justify-center gap-4 relative mb-8">
         {blogCategories.map((item) => (
           <div key={item} className="relative">
             <button
@@ -48,7 +48,7 @@ const BlogList = () => {
       </div>
 
       {/* Blog cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-24 mx-8 sm:mx-16 xl:mx-40">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-24 mx-8 sm:mx-16 xl:mx-40">
         {filteredBlogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
