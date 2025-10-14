@@ -3,7 +3,6 @@ import { assets, blog_data } from "../../assets/assets";
 import BlogTableItem from "../../component/admin/BlogTableItem";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
- 
 
 const Dashbord = () => {
   const [dashbordeData, setdashbordeData] = useState({
@@ -13,15 +12,16 @@ const Dashbord = () => {
     recentBlogs: [],
   });
 
-
-  const {axios} = useAppContext()
+  const { axios } = useAppContext();
 
   const fetchDashbordData = async () => {
     try {
-        const {data} = await axios.get("/api/admin/dashbord")
-        data.success ? setdashbordeData(data.dashboardData) : toast.error(data.message)
+      const { data } = await axios.get("/api/admin/dashbord");
+      data.success
+        ? setdashbordeData(data.dashboardData)
+        : toast.error(data.message);
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
@@ -79,41 +79,36 @@ const Dashbord = () => {
           <img src={assets.dashboard_icon_4} alt="" />
           <p>Latest Blogs</p>
         </div>
-        <div
-          className="relative min-w-[225px] sm:w-full  overflow-x-scroll  shadow rounded-lg 
-            scrollbar-hide bg-white  "
-        >
-          <table className=" text-sm min-w-[600px] text-gray-500 ">
+        <div className="relative min-w-[225px]  inline-block overflow-x-auto shadow rounded-lg bg-white">
+          <table className="min-w-[600px] text-sm text-gray-500">
             <thead className="text-xs text-gray-600 text-left uppercase">
               <tr>
-                <th scope="col" className=" py-4  px-6">
+                <th scope="col" className="py-4 px-6">
                   #
                 </th>
-                <th scope="col" className="px-2 py-4 ">
+                <th scope="col" className="px-2 py-4">
                   Blog Title
                 </th>
-                <th scope="col" className="px-2 py-4 ">
+                <th scope="col" className="px-2 py-4">
                   Date
                 </th>
-                <th scope="col" className="px-2 py-4 ">
+                <th scope="col" className="px-2 py-4">
                   Status
                 </th>
-                <th scope="col" className="px-2 py-4 ">
+                <th scope="col" className="px-2 py-4">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className=" ">
-              {dashbordeData.recentBlogs.map((blog, index) => {
-                return (
-                  <BlogTableItem
-                    key={blog._id}
-                    blog={blog}
-                    fetchBlogs={fetchDashbordData}
-                    index={index + 1}
-                  />
-                );
-              })}
+            <tbody>
+              {dashbordeData.recentBlogs.map((blog, index) => (
+                <BlogTableItem
+                  key={blog._id}
+                  blog={blog}
+                  fetchBlogs={fetchDashbordData}
+                  index={index + 1}
+                />
+              ))}
             </tbody>
           </table>
         </div>

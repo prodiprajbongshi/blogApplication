@@ -7,18 +7,15 @@ const Comments = () => {
   const [comments, setComments] = useState([]);
   const [filter, setFilter] = useState("Not Approved");
 
-  const {axios} = useAppContext();
-
+  const { axios } = useAppContext();
 
   const fetchComments = async () => {
     try {
-      const {data} = await axios.get("/api/admin/comments");
-      // console.log(data)
-      data.success ? setComments(data.comments) : toast.error(data.message)
+      const { data } = await axios.get("/api/admin/comments");
+      data.success ? setComments(data.comments) : toast.error(data.message);
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
-   
   };
 
   useEffect(() => {
@@ -27,8 +24,9 @@ const Comments = () => {
 
   return (
     <div className="flex-1 pt-5 px-5 sm:pt-12 sm:pl-16 bg-blue-50/50">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between md:items-center max-w-3xl">
-        <h1  className="mb-2">Comments</h1>
+        <h1 className="mb-2">Comments</h1>
         <div className="flex gap-4">
           <button
             onClick={() => setFilter("Approved")}
@@ -49,14 +47,12 @@ const Comments = () => {
           </button>
         </div>
       </div>
-      <div
-        className="relative min-w-[225px] sm:w-full  overflow-hidden shadow rounded-lg 
-            scrollbar-hide bg-white   pt-6 mt-6"
-      >
-       
-        <table className="w-full min-w-[600px]  text-sm text-gray-500 ">
+
+      {/* Responsive Table */}
+      <div className="relative w-full overflow-x-auto shadow rounded-lg scrollbar-hide bg-white pt-6 mt-6">
+        <table className="min-w-[600px] text-sm text-gray-500">
           <thead className="text-xs text-gray-700 text-left uppercase">
-            <tr className=" ">
+            <tr>
               <th scope="col" className="px-6 py-3">
                 Blog Title & Comment
               </th>
@@ -70,10 +66,9 @@ const Comments = () => {
           </thead>
           <tbody>
             {comments
-              .filter((comment) => {
-                if (filter === "Approved") return comment.isApproved === true;
-                return comment.isApproved === false;
-              })
+              .filter((comment) =>
+                filter === "Approved" ? comment.isApproved : !comment.isApproved
+              )
               .map((comment, index) => (
                 <CommentTableItem
                   key={comment._id}
