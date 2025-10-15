@@ -24,7 +24,9 @@ const AddBlog = () => {
 
     try {
       setLoading(true);
-      const { data } = await axios.post("/api/blog/generate", { prompt: title });
+      const { data } = await axios.post("/api/blog/generate", {
+        prompt: title,
+      });
       // console.log("API Response:", data);
 
       if (data.success) {
@@ -149,6 +151,14 @@ const AddBlog = () => {
         <p className="mt-4">Blog Description</p>
         <div className="max-w-lg h-72 pb-16 sm:pb-10 pt-2 relative ">
           <div ref={editorRef}></div>
+          {loading && (
+            <div
+              className="absolute right-0 top-0 bottom-0 left-0 flex
+              items-center justify-center bg-black/10 mt-2"
+            >
+              <div className="w-8 h-8 rounded-full border-2 border-t-white animate-spin"></div>
+            </div>
+          )}
           <button
             type="button"
             disabled={loading}
