@@ -48,9 +48,10 @@ const Comments = () => {
         </div>
       </div>
 
-      {/* Responsive Table */}
-      <div className="relative w-full overflow-x-auto shadow rounded-lg scrollbar-hide bg-white pt-6 mt-6">
-        <table className="min-w-[600px] text-sm text-gray-500">
+      {/* Comments  Table */}
+       
+      <div className="relative w-[275px]  md:w-full overflow-x-auto shadow rounded-lg scrollbar-hide bg-white pt-6 mt-6">
+        <table className="min-w-[600px]  text-sm text-gray-500">
           <thead className="text-xs text-gray-700 text-left uppercase">
             <tr>
               <th scope="col" className="px-6 py-3">

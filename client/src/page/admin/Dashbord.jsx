@@ -79,7 +79,7 @@ const Dashbord = () => {
           <img src={assets.dashboard_icon_4} alt="" />
           <p>Latest Blogs</p>
         </div>
-        <div className="relative min-w-[225px]  inline-block overflow-x-auto shadow rounded-lg bg-white">
+        <div className="relative   overflow-x-auto shadow rounded-lg bg-white">
           <table className="min-w-[600px] text-sm text-gray-500">
             <thead className="text-xs text-gray-600 text-left uppercase">
               <tr>
