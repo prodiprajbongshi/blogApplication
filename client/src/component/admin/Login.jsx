@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 const Login = () => {
   const { axios, setToken } = useAppContext();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   // handle admin login form 
   const handleSubmit = async (e) => {
@@ -51,8 +51,8 @@ const Login = () => {
               type="email"
               id="email"
               placeholder="Enter Email"
-              value={email}                 // ✅ bind value
-              onChange={(e) => setEmail(e.target.value)} // ✅ update state
+              value={email}            
+              onChange={(e) => setEmail(e.target.value)}  
               required
             />
           </div>
@@ -64,8 +64,8 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Enter Password"
-              value={password}                // ✅ bind value
-              onChange={(e) => setPassword(e.target.value)} // ✅ update state
+              value={password}                 
+              onChange={(e) => setPassword(e.target.value)}  
               required
             />
           </div>
